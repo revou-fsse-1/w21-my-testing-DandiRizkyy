@@ -1,5 +1,6 @@
 import PrivateLayout from "@/layout/PrivateLayout";
 import axios from "axios";
+import { getCookie, getCookies } from "cookies-next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -29,7 +30,7 @@ export function Wishlist({ initialData }: WishlistProps) {
   };
 
   const handleDelete = async (id: number | undefined) => {
-    const token = window.localStorage.getItem("token"); // Retrieve token when making the API request
+    const token = getCookie("token"); // Retrieve token when making the API request
 
     if (!token) {
       return; // Return early if token is not available
@@ -49,7 +50,7 @@ export function Wishlist({ initialData }: WishlistProps) {
 
   const fetchData = async () => {
     try {
-      const token = window.localStorage.getItem("token");
+      const token = getCookie("token"); // - client side
       if (!token) {
         return;
       }
@@ -133,16 +134,16 @@ export function Wishlist({ initialData }: WishlistProps) {
   );
 }
 
-const PrivateWishlist = () => {
+const PrivateWishlist = ({ initialData }: any) => {
   const [wishlistData, setWishlistData] = useState([]);
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
+    const token = getCookie("token"); // - client side
     if (token) {
       fetchData(token);
     }
   }, []);
 
-  const fetchData = async (token: string) => {
+  const fetchData = async (token: string | true) => {
     try {
       const response = await axios.get(
         "https://w17-our-backend-group-c-production.up.railway.app/wishlists",
@@ -150,7 +151,7 @@ const PrivateWishlist = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      const initialData = response.data;
+      // const initialData = response.data;
       setWishlistData(initialData);
     } catch (error) {
       console.error(error);
@@ -165,29 +166,29 @@ const PrivateWishlist = () => {
 
 export default PrivateWishlist;
 
-// export async function getServerSideProps() {
-//   try {
-//     // Retrieve token when making the API request
+export async function getServerSideProps() {
+  try {
+    // Retrieve token when making the API request
+    const token = getCookie("token");
+    // Fetch the data or perform any other server-side tasks
+    const response = await axios.get(
+      "https://w17-our-backend-group-c-production.up.railway.app/wishlists"
+    );
 
-//     // Fetch the data or perform any other server-side tasks
-//     const response = await axios.get(
-//       "https://w17-our-backend-group-c-production.up.railway.app/wishlists"
-//     );
+    const initialData = response.data;
 
-//     const initialData = response.data;
-
-//     // Return the props object
-//     return {
-//       props: {
-//         initialData,
-//       },
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       props: {
-//         initialData: [], // Provide a fallback value if the data fetching fails
-//       },
-//     };
-//   }
-// }
+    // Return the props object
+    return {
+      props: {
+        initialData,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        initialData: [], // Provide a fallback value if the data fetching fails
+      },
+    };
+  }
+}

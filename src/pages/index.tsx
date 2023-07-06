@@ -20,6 +20,27 @@ interface HomeProps {
   initialData: ProductData[];
 }
 
+export async function getServerSideProps() {
+  try {
+    const response = await axios.get(
+      "https://w17-our-backend-group-c-production.up.railway.app/products/all"
+    );
+    const data = response.data;
+
+    return {
+      props: {
+        initialData: data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        initialData: null,
+      },
+    };
+  }
+}
+
 export default function Home({ initialData }: HomeProps) {
   const [productData, setProductData] = useState(initialData);
   const [error, setError] = useState(false);
@@ -56,27 +77,4 @@ export default function Home({ initialData }: HomeProps) {
       <Product data={productData} error={error} isLoading={isLoading} />
     </main>
   );
-}
-
-export async function getStaticProps() {
-  try {
-    const response = await axios.get(
-      "https://w17-our-backend-group-c-production.up.railway.app/products/all"
-    );
-    const data = response.data;
-
-    return {
-      props: {
-        initialData: data,
-      },
-      revalidate: 10,
-    };
-  } catch (error) {
-    return {
-      props: {
-        initialData: null,
-      },
-      revalidate: 10,
-    };
-  }
 }
