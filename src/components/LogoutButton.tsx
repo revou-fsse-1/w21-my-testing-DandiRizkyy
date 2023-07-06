@@ -1,10 +1,12 @@
+import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import React from "react";
 
 export default function LogoutButton() {
   const router = useRouter();
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    deleteCookie("token");
     router.push("/");
   };
 

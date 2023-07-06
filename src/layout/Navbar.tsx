@@ -74,7 +74,14 @@ export default function Navbar() {
                   className="m-2 inline-flex items-center justify-center rounded-xl border border-transparent bg-blue-600 px-5 py-2 font-medium text-white hover:bg-blue-700"
                 >
                   {" "}
-                  Login{" "}
+                  Login User{" "}
+                </Link>
+                <Link
+                  href="/auth/login-admin"
+                  className="m-2 inline-flex items-center justify-center rounded-xl border border-transparent bg-blue-600 px-5 py-2 font-medium text-white hover:bg-blue-700"
+                >
+                  {" "}
+                  Login Admin{" "}
                 </Link>
                 <LogoutButton />
               </div>
