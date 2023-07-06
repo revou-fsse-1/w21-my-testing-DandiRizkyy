@@ -5,43 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
+import { setCookie } from "cookies-next";
 
 interface FormProps {
   email: string;
   password: string;
 }
-
-export const getServerSideProps = async (
-  data: FormProps,
-  { req, res }: any
-) => {
-  try {
-    const response = await axios.post(
-      "https://w17-our-backend-group-c-production.up.railway.app/auth/login/user",
-      {
-        // Provide the necessary data for authentication, e.g., username and password
-        email: data.email,
-        password: data.password,
-      }
-    );
-
-    const token = response.data.access_token; // Assuming the API response contains a 'token' field
-
-    if (token) {
-      setCookie({ res }, "token", token, {
-        maxAge: 10600, // Cookie expiration time in seconds
-        path: "/", // Set the appropriate path
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
-  return {
-    props: {},
-  };
-};
 
 export default function Login() {
   const router = useRouter();
@@ -73,7 +42,6 @@ export default function Login() {
 
     // Set the cookie on the server
     setCookie("token", response.data.access_token);
-    setCookie("token", { req, res });
 
     // Redirect to the home page
     router.push("/");

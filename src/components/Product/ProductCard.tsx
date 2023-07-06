@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "cookies-next";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -30,7 +31,7 @@ export default function Product({ data, error, isLoading }: ProductProps) {
 
   const fetchUserData = async () => {
     try {
-      const token = window.localStorage.getItem("token"); // Retrieve token when making the API request
+      const token = getCookie("token"); // Retrieve token when making the API request
 
       if (!token) {
         return; // Return early if token is not available
@@ -70,7 +71,7 @@ export default function Product({ data, error, isLoading }: ProductProps) {
 
   const handleWishlist = async ({ name, productId }: CreateWishlist) => {
     try {
-      const token = window.localStorage.getItem("token"); // Retrieve token when making the API request
+      const token = getCookie("token"); // Retrieve token when making the API request
 
       if (!token) {
         return; // Return early if token is not available

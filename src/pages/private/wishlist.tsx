@@ -134,7 +134,7 @@ export function Wishlist({ initialData }: WishlistProps) {
   );
 }
 
-const PrivateWishlist = ({ initialData }: any) => {
+const PrivateWishlist = () => {
   const [wishlistData, setWishlistData] = useState([]);
   useEffect(() => {
     const token = getCookie("token"); // - client side
@@ -151,7 +151,7 @@ const PrivateWishlist = ({ initialData }: any) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      // const initialData = response.data;
+      const initialData = response.data;
       setWishlistData(initialData);
     } catch (error) {
       console.error(error);
@@ -166,29 +166,29 @@ const PrivateWishlist = ({ initialData }: any) => {
 
 export default PrivateWishlist;
 
-export async function getServerSideProps() {
-  try {
-    // Retrieve token when making the API request
-    const token = getCookie("token");
-    // Fetch the data or perform any other server-side tasks
-    const response = await axios.get(
-      "https://w17-our-backend-group-c-production.up.railway.app/wishlists"
-    );
+// export async function getServerSideProps() {
+//   try {
+//     // Retrieve token when making the API request
+//     const token = getCookie("token");
+//     // Fetch the data or perform any other server-side tasks
+//     const response = await axios.get(
+//       "https://w17-our-backend-group-c-production.up.railway.app/wishlists"
+//     );
 
-    const initialData = response.data;
+//     const initialData = response.data;
 
-    // Return the props object
-    return {
-      props: {
-        initialData,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        initialData: [], // Provide a fallback value if the data fetching fails
-      },
-    };
-  }
-}
+//     // Return the props object
+//     return {
+//       props: {
+//         initialData,
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       props: {
+//         initialData: [], // Provide a fallback value if the data fetching fails
+//       },
+//     };
+//   }
+// }
