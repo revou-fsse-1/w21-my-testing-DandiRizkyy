@@ -20,10 +20,30 @@ export default function Navbar() {
                 Toko-Ku
               </Link>
               {/* <!-- Nav Links --> */}
-              <ul className="flex px-4 mx-auto font-semibold font-heading space-x-12">
+              <ul className="flex mx-auto font-semibold font-heading space-x-12">
                 <li>
                   <Link className="hover:text-gray-200" href="/">
                     Home
+                  </Link>
+                </li>
+              </ul>
+              <ul className="flex mx-auto font-semibold font-heading space-x-12">
+                <li>
+                  <Link
+                    className="hover:text-gray-200"
+                    href="/private/add-product"
+                  >
+                    Add Product
+                  </Link>
+                </li>
+              </ul>
+              <ul className="flex mx-auto font-semibold font-heading space-x-12">
+                <li>
+                  <Link
+                    className="hover:text-gray-200"
+                    href="/private/edit-product"
+                  >
+                    Edit Product
                   </Link>
                 </li>
               </ul>
