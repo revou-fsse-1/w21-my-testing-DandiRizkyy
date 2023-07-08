@@ -4,7 +4,13 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { FormProps, SubmitHandler, useForm } from "react-hook-form";
+import {
+  FormProps,
+  SubmitHandler,
+  UseFormRegisterReturn,
+  useForm,
+} from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 
 interface ProductProps {
@@ -55,6 +61,14 @@ export function AddProduct() {
     console.log(data);
     router.push("/");
   };
+  const registerTitle: UseFormRegisterReturn<"title"> = register("title");
+  const registerDescription: UseFormRegisterReturn<"description"> =
+    register("description");
+  const registerPrice: UseFormRegisterReturn<"price"> = register("price");
+  const registerQuantity: UseFormRegisterReturn<"quantity"> =
+    register("quantity");
+  const registerCategories: UseFormRegisterReturn<"categories"> =
+    register("categories");
 
   return (
     <div>
@@ -194,28 +208,6 @@ export function AddProduct() {
 }
 
 const PrivateAddProduct = () => {
-  //   const [productData, setProductData] = useState([]);
-  //   useEffect(() => {
-  //     const token = getCookie("token"); // - client side
-  //     if (token) {
-  //       fetchData(token);
-  //     }
-  //   }, []);
-
-  //   const fetchData = async (token: string | true) => {
-  //     try {
-  //       const response = await axios.post(
-  //         "https://w17-our-backend-group-c-production.up.railway.app/products",
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       );
-  //       const initialData = response.data;
-  //       setProductData(initialData);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
   return (
     <PrivateLayout>
       <AddProduct />

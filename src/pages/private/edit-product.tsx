@@ -34,24 +34,24 @@ export function AddProduct() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<ProductProps> = async (data, id: number) => {
-    const token = getCookie("token"); // - client side
-    await axios.patch(
-      `https://w17-our-backend-group-c-production.up.railway.app/products/${id}`,
-      {
-        title: data.title,
-        description: data.description,
-        price: data.price,
-        quantity: data.quantity,
-        categories: data.categories,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    console.log(data);
-    router.push("/");
-  };
+  // const onSubmit: SubmitHandler<ProductProps> = async (data, id: number) => {
+  //   const token = getCookie("token"); // - client side
+  //   await axios.patch(
+  //     `https://w17-our-backend-group-c-production.up.railway.app/products/${id}`,
+  //     {
+  //       title: data.title,
+  //       description: data.description,
+  //       price: data.price,
+  //       quantity: data.quantity,
+  //       categories: data.categories,
+  //     },
+  //     {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     }
+  //   );
+  //   console.log(data);
+  //   router.push("/");
+  // };
 
   return (
     <div>
@@ -61,7 +61,7 @@ export function AddProduct() {
             <h1 className=" text-3xl font-bold text-gray-700">Edit Product</h1>
             <h1>FEATURE NOT WORKING YET</h1>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <div>
               <div className="relative mt-2 w-full">
                 <input

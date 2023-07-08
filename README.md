@@ -1,19 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/RV2b0gLh)
-# Week 20 Assignment NextJs Implementation (ISR/SSG/SSR)
 
-![Assignment](/public/w20-images.png)
+# Week 21 Assignment Testing and State Management
 
 ## Description ✍🏻
 
 ---
 
-For this week's assignment, I am creating a website using Nextjs framework that integrates some functionality such as auth, displaying products to homepages and add products to wishlists as well as delete the products from wishlists.
-
-For `Homepages` it's using ISR and SSG structures. I'm choosing ISR for homepages because it's not private routes.. the homepages will `revalidate each 10 seconds` if someone hit the api. It will bring good consistency for all users and it will ease the server load.
-
-For `Wishlist` route i wrap it into private routes and only person who already login can access it. I'm planning to make it `SSR` at first but `got some troubles on implementing it.` So i make it into static pages for now, the user can still do the functionality as long as the javascript is enabled.
-
-When the javascript is disabled, it still show the html structures.
+this is the continuation of last week assignment, we need to implement testing and state management. Still had many errors and bugs.
 
 ## Installation 🔨
 
@@ -24,7 +17,7 @@ In order to install and develop locally, follow these steps:
 1. Clone this repository
 
 ```bash
-$ https://github.com/revou-fsse-1/w20-react-router-DandiRizkyy.git
+$ https://github.com/revou-fsse-1/w21-my-testing-DandiRizkyy.git
 ```
 
 2. install required dependencies
@@ -65,5 +58,3 @@ $ pnpm dev
 ## Links 🔗
 
 ---
-
-Week 20 Assignment Links : https://w20-react-router-dandi-rizkyy.vercel.app/
