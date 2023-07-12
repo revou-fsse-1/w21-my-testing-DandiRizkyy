@@ -1,55 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  firstName: '',
-  lastName: '',
-  occupation: '',
-  twitter: '',
-  bio: '',
-  imgUrl: '',
+  email: "",
+  password: "",
 };
 
 const formSlice = createSlice({
-  name: 'form',
+  name: "form",
   initialState,
   reducers: {
-    changeFirstname: (state, action) => {
-      state.firstName = action.payload;
+    changeEmail: (state, action) => {
+      state.email = action.payload;
     },
-    changeLastname: (state, action) => {
-      state.lastName = action.payload;
+    changePassword: (state, action) => {
+      state.password = action.payload;
     },
-    changeOccupation: (state, action) => {
-      state.occupation = action.payload;
-    },
-    changeTwitter: (state, action) => {
-      state.twitter = action.payload;
-    },
-    changeBio: (state, action) => {
-      state.bio = action.payload;
-    },
-    changeImgUrl: (state, action) => {
-      state.imgUrl = action.payload;
-    },
+
     resetForm: (state) => {
-      state.firstName = '';
-      state.lastName = '';
-      state.occupation = '';
-      state.twitter = '';
-      state.imgUrl = '';
-      state.bio = '';
+      state.email = "";
+      state.password = "";
     },
   },
 });
 
-export const {
-  changeFirstname,
-  changeLastname,
-  changeOccupation,
-  changeTwitter,
-  changeBio,
-  changeImgUrl,
-  resetForm,
-} = formSlice.actions;
+export const { changeEmail, changePassword, resetForm } = formSlice.actions;
 
 export default formSlice.reducer;
