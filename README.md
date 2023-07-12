@@ -6,7 +6,7 @@
 
 ---
 
-this is the continuation of last week assignment, we need to implement testing and state management. Im using redux toolkit as a state management and trying to do unit testing, integration testing and end-to-end testting (using playwright).
+this is the continuation of last week assignment, we need to implement testing and state management. Im using redux toolkit as a state management to save form value to localstorage and trying to do unit testing, integration testing and end-to-end testing (using playwright).
 
 ## Installation 🔨
 
